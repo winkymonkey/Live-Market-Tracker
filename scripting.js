@@ -32,103 +32,132 @@ $(document).ready(function() {
     });
     
     $("#trackerSubmit").click(function() {
-        generateDailyTracker();
+        //generateDailyTracker();
+    	generateMultiDayTracker();
     });
     
     $("#dateSubmit").click(function() {
-        generateOneDayTracker();
+        //generateOneDayTracker();
+    	generateOneDayTrackerNew();
     });
     
     
     
     
     // BUSINESS FUNCTIONS
-    function generateDailyTracker() {
-        $('#records_table').empty();
-        $("#datepicker").val('');
-		let dayCount = $("#how_many_days").val();
-        
-        for (key in mapping) {
-            let fundName = key;
-            let endpoint = mapping[key];
-            var settings = {
+    function generateMultiDayTracker() {
+    	$('#records_table').empty();
+    	$("#datepicker").val('');
+    	let dayCount = $("#how_many_days").val();
+    	
+    	let promises = [];
+    	let responseArr = [];
+    	
+    	for (key in mapping) {
+    		let fundName = key;
+    		let endpoint = mapping[key];
+    		var settings = {
                 "url": endpoint,
                 "method": "GET",
                 "timeout": 0,
             };
-            $.ajax(settings).done(function (response) {
-                let _trHeader = createHeader(dayCount, response);
-                let _trRows = createRow(dayCount, response, fundName);
-                if ($('#records_table th').length == 0)
-                    $('#records_table').append(_trHeader).append(_trRows);
-                else
-                    $('#records_table').append(_trRows);
-                removeOverlay();
-            })
-            .fail(function (jqXHR, textStatus, errorThrown) {
-                removeOverlay();
-                flashErrorMsg();
-            });
-        }
+    		var request = $.ajax(settings).done(function (response) {
+    			let obj = {
+    				'fundName':fundName, 
+    				'data':response.data
+    			};
+    			responseArr.push(obj);
+    		});
+    		promises.push(request);
+    	}
+    	
+    	$.when.apply(null, promises).done(function() {
+    		responseArr.sort(compare);
+        	console.log(responseArr);
+        	proessResponse(responseArr, dayCount);
+        	removeOverlay();
+        });
     }
     
-    function generateOneDayTracker() {
-        $('#records_table').empty();
+    
+    function generateOneDayTrackerNew() {
+    	$('#records_table').empty();
         $("#how_many_days").val('');
         let mydate = $("#datepicker").val();
         
-        for (key in mapping) {
-            let fundName = key;
-            let endpoint = mapping[key];
-            var settings = {
+        let promises = [];
+    	let responseArr = [];
+    	
+    	for (key in mapping) {
+    		let fundName = key;
+    		let endpoint = mapping[key];
+    		var settings = {
                 "url": endpoint,
                 "method": "GET",
                 "timeout": 0,
             };
-            $.ajax(settings).done(function (response) {
-                let result = response.data.filter(item => item.date==mydate);
+    		var request = $.ajax(settings).done(function (response) {
+    			let result = response.data.filter(item => item.date==mydate);
                 response.data = result;
                 
-                let _trHeader = createHeader(1, response);
-                let _trRows = createRow(1, response, fundName);
-                if ($('#records_table th').length == 0)
-                    $('#records_table').append(_trHeader).append(_trRows);
-                else
-                    $('#records_table').append(_trRows);
-                
-                removeOverlay();
-                manageWarningMsg();
-            })
-            .fail(function (jqXHR, textStatus, errorThrown) {
-                removeOverlay();
-                flashErrorMsg();
-            });
-        }
+    			let obj = {
+    				'fundName':fundName, 
+    				'data':response.data
+    			};
+    			responseArr.push(obj);
+    		});
+    		promises.push(request);
+    	}
+    	
+    	$.when.apply(null, promises).done(function() {
+    		responseArr.sort(compare);
+        	console.log(responseArr);
+        	proessResponse(responseArr, 1);
+        	removeOverlay();
+        });
     }
     
     
     
     
-    // HELPER FUNCTION
-    function createHeader(dayCount, response) {
-        let _trHeader = $('<thead>').append($('<th>').text("Fund Name"));
-        for (i=0; i<dayCount; i++) {
-            if (response.data.length > 0) {
-                _trHeader.append($('<th>').text(response.data[i].date));
-            }
-        }
-        return _trHeader;
+    // Helper function
+    function compare(a, b) {
+    	if (a.fundName < b.fundName) {
+    		return -1;
+    	}
+    	if (a.fundName > b.fundName) {
+    		return 1;
+    	}
+    	return 0;
     }
     
-    function createRow(dayCount, response, fundName) {
-        let _trRows = $('<tr>').append($('<td>').text(fundName));
-        for (i=0; i<dayCount; i++) {
-            if (response.data.length > 0) {
-                let nav = parseFloat(response.data[i].nav).toFixed(4);
-                _trRows.append($('<td>').text(nav));
-            }
-        }
-        return _trRows;
+    function proessResponse(responseArr, dayCount) {
+    	try {
+	    	let _rowHead = $('<thead>').append($('<th>').text("Fund Name"));
+	    	for (i=0; i<dayCount; i++) {
+	    		if (responseArr[0].data.length > 0) {
+	    			_rowHead.append($('<th>').text(responseArr[0].data[i].date));
+	    		}
+	    		else {
+	    			manageWarningMsg();		//invalid date is chosen
+	    			return;
+	    		}
+	    	}
+	    	$('#records_table').append(_rowHead);
+	    	
+	    	let _rowBody = $('<tbody>');
+	    	for (j=0; j<responseArr.length; j++) {
+	    		let _eachRow = $('<tr>').append($('<td>').text(responseArr[j].fundName));
+	    		for (k=0; k<dayCount; k++) {
+	    			_eachRow.append($('<td>').text(responseArr[j].data[k].nav));
+	        	}
+	    		_rowBody.append(_eachRow);
+	    	}
+	    	$('#records_table').append(_rowBody);
+    	}
+    	catch (err) {
+    		flashErrorMsg();
+    	}
     }
     
     
