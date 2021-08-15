@@ -149,7 +149,8 @@ $(document).ready(function() {
 	    	for (j=0; j<responseArr.length; j++) {
 	    		let _eachRow = $('<tr>').append($('<td>').text(responseArr[j].fundName));
 	    		for (k=0; k<dayCount; k++) {
-	    			_eachRow.append($('<td>').text(responseArr[j].data[k].nav));
+	    			let nav = parseFloat(responseArr[j].data[k].nav).toFixed(4);
+	    			_eachRow.append($('<td>').text(nav));
 	        	}
 	    		_rowBody.append(_eachRow);
 	    	}
