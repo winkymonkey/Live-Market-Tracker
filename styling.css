@@ -50,7 +50,7 @@ input[type="number"], input[type="text"] {
 
 
 
-#dv-01, #dv-02, #dv-03 {
+#row1, #row2, #row3, #row4 {
     margin-bottom: 8px;
 }
 #wrapper {

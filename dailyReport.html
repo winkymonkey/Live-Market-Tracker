@@ -18,19 +18,25 @@
             </div>
         </div>
         <div id="wrapper">
-            <div id="dv-01">
-                <input id="how_many_days" type="number" placeholder="How many days?" autocomplete="off" />
-                <input id="trackerSubmit" type="submit" value="Get Daily Report" />
-            </div>
-            <div id="dv-02">
-                <input type="text" id="datepicker" placeholder="Choose Date" autocomplete="off" />
-                <input id="dateSubmit" type="submit" value="Choose your date" />
-            </div>
-            <div id="dv-03">
-                <table id="records_table"></table>
-                <div class="error" id="5xxError"><span>Something went wrong.. Please try again after sometime..</span></div>
-                <div class="warning" id="DateWarning"><span>No data found for this date..</span></div>
-            </div>
+            <div id="row1">
+				<input id="how_many_days" type="number" placeholder="How many days" autocomplete="off" />
+				<input id="trackerSubmit" type="submit" value="Get Report" />
+			</div>
+			<div id="row2">
+				<input type="text" id="datepicker" placeholder="Which Date" autocomplete="off" />
+				<input id="dateSubmit" type="submit" value="Get Report" />
+			</div>
+			<div id="row3">
+				<input type="radio" id="p01" class="investor" name="investorName" value="tumpu" checked/><label for="p01">Tumpu</label>
+				<input type="radio" id="p02" class="investor" name="investorName" value="ria" /><label for="p02">Ria</label>
+				<input type="radio" id="p03" class="investor" name="investorName" value="maa" /><label for="p03">Maa</label>
+			</div>
+			<div id="row4">
+				<table id="records_table"></table>
+				<div class="error" id="myError"><span>Something went wrong.. Please try again after sometime..</span></div>
+				<div class="warning" id="dateWarning"><span>No data found for this date..</span></div>
+				<div class="warning" id="inputWarning"><span>Please choose correct input..</span></div>
+			</div>
         </div>
     </body>
 </html>
