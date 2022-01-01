@@ -1,35 +1,35 @@
 $(document).ready(function() {    
     let mapping = {
     	'tumpu': {
-	        'DEBT_SBI': 'https://api.mfapi.in/mf/119824',
-	        'SMALL_NIPPON': 'https://api.mfapi.in/mf/118778',
-	        'SMALL_SBI': 'https://api.mfapi.in/mf/125497',
-	        'SMALL_HDFC': 'https://api.mfapi.in/mf/130503',
-	        'FLEXI_KOTAK': 'https://api.mfapi.in/mf/120166',
-	        'FLEXI_PARAG': 'https://api.mfapi.in/mf/122639',
-	        'FLEXI_MOTILAL': 'https://api.mfapi.in/mf/129046',
-	        'ELSS_NIPPON_REG': 'https://api.mfapi.in/mf/103196',
-	        'ELSS_MIRAE': 'https://api.mfapi.in/mf/135781',
-	        'ELSS_MOTILAL': 'https://api.mfapi.in/mf/133386',
-	        'LARGE_SBI_REG': 'https://api.mfapi.in/mf/103504',
-	        'BALANCED_ICICI': 'https://api.mfapi.in/mf/120251'
+	        '01.DEBT_SBI': 'https://api.mfapi.in/mf/119824',
+	        '02.SMALL_NIPPON': 'https://api.mfapi.in/mf/118778',
+	        '03.SMALL_SBI': 'https://api.mfapi.in/mf/125497',
+	        '04.SMALL_HDFC': 'https://api.mfapi.in/mf/130503',
+	        '05.FLEXI_KOTAK': 'https://api.mfapi.in/mf/120166',
+	        '06.FLEXI_PARAG': 'https://api.mfapi.in/mf/122639',
+	        '07.FLEXI_MOTILAL': 'https://api.mfapi.in/mf/129046',
+	        '08.ELSS_NIPPON (R)': 'https://api.mfapi.in/mf/103196',
+	        '09.ELSS_MIRAE': 'https://api.mfapi.in/mf/135781',
+	        '10.ELSS_MOTILAL': 'https://api.mfapi.in/mf/133386',
+	        '11.LARGE_SBI (R)': 'https://api.mfapi.in/mf/103504',
+	        '12.HYBRID_ICICI': 'https://api.mfapi.in/mf/120251'
     	},
     	'ria': {
-    		'DEBT_SBI': 'https://api.mfapi.in/mf/119824',
-    		'SMALL_AXIS': 'https://api.mfapi.in/mf/125354',
-    		'SMALL_SBI': 'https://api.mfapi.in/mf/125497',
-    		'FLEXI_UTI': 'https://api.mfapi.in/mf/120662',
-    		'FLEXI_PARAG': 'https://api.mfapi.in/mf/122639'
+    		'01.DEBT_SBI': 'https://api.mfapi.in/mf/119824',
+    		'02.SMALL_AXIS': 'https://api.mfapi.in/mf/125354',
+    		'03.SMALL_SBI': 'https://api.mfapi.in/mf/125497',
+    		'04.FLEXI_UTI': 'https://api.mfapi.in/mf/120662',
+    		'05.FLEXI_PARAG': 'https://api.mfapi.in/mf/122639'
     	},
     	'maa': {
-    		'DEBT_SBI': 'https://api.mfapi.in/mf/119824',
-    		'SMALL_NIPPON': 'https://api.mfapi.in/mf/118778',
-    		'SMALL_HDFC': 'https://api.mfapi.in/mf/130503',
-    		'FLEXI_KOTAK': 'https://api.mfapi.in/mf/120166',
-    		'FLEXI_PARAG': 'https://api.mfapi.in/mf/122639',
-    		'FLEXI_MOTILAL': 'https://api.mfapi.in/mf/129046',
-    		'LARGE_SBI': 'https://api.mfapi.in/mf/119598',
-    		'BALANCED_ICICI': 'https://api.mfapi.in/mf/120251'
+    		'01.DEBT_SBI': 'https://api.mfapi.in/mf/119824',
+    		'02.SMALL_NIPPON': 'https://api.mfapi.in/mf/118778',
+    		'03.SMALL_HDFC': 'https://api.mfapi.in/mf/130503',
+    		'04.FLEXI_KOTAK': 'https://api.mfapi.in/mf/120166',
+    		'05.FLEXI_PARAG': 'https://api.mfapi.in/mf/122639',
+    		'06.FLEXI_MOTILAL': 'https://api.mfapi.in/mf/129046',
+    		'07.LARGE_SBI': 'https://api.mfapi.in/mf/119598',
+    		'08.HYBRID_ICICI': 'https://api.mfapi.in/mf/120251'
     	}
     };
     
