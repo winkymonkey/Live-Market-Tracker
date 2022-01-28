@@ -259,8 +259,8 @@ $(document).ready(function() {
     }
     
     function clipInput(elem) {
-        if (elem.val() > 30)
-            elem.val(30);
+        if (elem.val() > 300)
+            elem.val(300);
         if (elem.val() < 0)
             elem.val(0);
     }
