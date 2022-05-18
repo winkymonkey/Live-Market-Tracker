@@ -7,12 +7,10 @@ $(document).ready(function() {
 	        '04.SMALL_HDFC': 'https://api.mfapi.in/mf/130503',
 	        '05.FLEXI_KOTAK': 'https://api.mfapi.in/mf/120166',
 	        '06.FLEXI_PARAG': 'https://api.mfapi.in/mf/122639',
-	        '07.FLEXI_MOTILAL': 'https://api.mfapi.in/mf/129046',
-	        '08.ELSS_NIPPON (R)': 'https://api.mfapi.in/mf/103196',
-	        '09.ELSS_MIRAE': 'https://api.mfapi.in/mf/135781',
-	        '10.ELSS_MOTILAL': 'https://api.mfapi.in/mf/133386',
-	        '11.LARGE_SBI (R)': 'https://api.mfapi.in/mf/103504',
-	        '12.HYBRID_ICICI': 'https://api.mfapi.in/mf/120251'
+	        '07.FLEXI_UTI': 'https://api.mfapi.in/mf/120662',
+	        '08.FLEXI_MOTILAL': 'https://api.mfapi.in/mf/129046',
+	        '09.LARGE_SBI (R)': 'https://api.mfapi.in/mf/103504',
+	        '10.HYBRID_ICICI': 'https://api.mfapi.in/mf/120251'
     	},
     	'ria': {
     		'01.DEBT_SBI': 'https://api.mfapi.in/mf/119824',
@@ -27,9 +25,10 @@ $(document).ready(function() {
     		'03.SMALL_HDFC': 'https://api.mfapi.in/mf/130503',
     		'04.FLEXI_KOTAK': 'https://api.mfapi.in/mf/120166',
     		'05.FLEXI_PARAG': 'https://api.mfapi.in/mf/122639',
-    		'06.FLEXI_MOTILAL': 'https://api.mfapi.in/mf/129046',
-    		'07.LARGE_SBI': 'https://api.mfapi.in/mf/119598',
-    		'08.HYBRID_ICICI': 'https://api.mfapi.in/mf/120251'
+            '06.FLEXI_UTI': 'https://api.mfapi.in/mf/120662',
+    		'07.FLEXI_MOTILAL': 'https://api.mfapi.in/mf/129046',
+    		'08.LARGE_SBI': 'https://api.mfapi.in/mf/119598',
+    		'09.HYBRID_ICICI': 'https://api.mfapi.in/mf/120251'
     	}
     };
     
