@@ -20,18 +20,21 @@
         <div id="wrapper">
             <div id="row1">
 				<input id="how_many_days" type="number" placeholder="How many days" autocomplete="off" />
-				<input id="trackerSubmit" type="submit" value="Get Report" />
+				<input id="dayCountSubmit" type="submit" value="Get Report" />
 			</div>
-			<div id="row2">
-				<input type="text" id="datepicker" placeholder="Which Date" autocomplete="off" />
+            <div id="row2">
+                <span>OR</span>
+            </div>
+			<div id="row3">
+				<input type="text" id="date_picker" placeholder="Which Date" autocomplete="off" />
 				<input id="dateSubmit" type="submit" value="Get Report" />
 			</div>
-			<div id="row3">
-				<input type="radio" id="p01" class="investor" name="investorName" value="tumpu" checked/><label for="p01">Tumpu</label>
-				<input type="radio" id="p02" class="investor" name="investorName" value="ria" /><label for="p02">Ria</label>
-				<input type="radio" id="p03" class="investor" name="investorName" value="maa" /><label for="p03">Maa</label>
-			</div>
 			<div id="row4">
+				<input type="radio" id="p01" class="investor" name="investorName" value="tumpu" checked /><label for="p01">Tumpu</label>
+				<input type="radio" id="p02" class="investor" name="investorName" value="maa" /><label for="p02">Maa</label>
+                <input type="radio" id="p03" class="investor" name="investorName" value="ria" /><label for="p03">Ria</label>
+			</div>
+			<div id="row5">
 				<table id="records_table"></table>
 				<div class="error" id="myError"><span>Something went wrong.. Please try again after sometime..</span></div>
 				<div class="warning" id="dateWarning"><span>No data found for this date..</span></div>

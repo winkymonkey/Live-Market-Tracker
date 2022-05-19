@@ -23,6 +23,9 @@ input[type="number"], input[type="text"] {
 ::placeholder {
     font: 15px 'KoHo',sans-serif;
 }
+input[type=submit]:disabled {
+    background-color: lightgrey;
+}
 
 
 
@@ -50,7 +53,7 @@ input[type="number"], input[type="text"] {
 
 
 
-#row1, #row2, #row3, #row4 {
+#row1, #row2, #row3, #row4, #row5 {
     margin-bottom: 8px;
 }
 #wrapper {

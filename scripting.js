@@ -1,4 +1,4 @@
-$(document).ready(function() {    
+$(document).ready(function() {
     let mapping = {
     	'tumpu': {
 	        '01.DEBT_SBI': 'https://api.mfapi.in/mf/119824',
@@ -12,13 +12,6 @@ $(document).ready(function() {
 	        '09.LARGE_SBI (R)': 'https://api.mfapi.in/mf/103504',
 	        '10.HYBRID_ICICI': 'https://api.mfapi.in/mf/120251'
     	},
-    	'ria': {
-    		'01.DEBT_SBI': 'https://api.mfapi.in/mf/119824',
-    		'02.SMALL_AXIS': 'https://api.mfapi.in/mf/125354',
-    		'03.SMALL_SBI': 'https://api.mfapi.in/mf/125497',
-    		'04.FLEXI_UTI': 'https://api.mfapi.in/mf/120662',
-    		'05.FLEXI_PARAG': 'https://api.mfapi.in/mf/122639'
-    	},
     	'maa': {
     		'01.DEBT_SBI': 'https://api.mfapi.in/mf/119824',
     		'02.SMALL_NIPPON': 'https://api.mfapi.in/mf/118778',
@@ -29,10 +22,17 @@ $(document).ready(function() {
     		'07.FLEXI_MOTILAL': 'https://api.mfapi.in/mf/129046',
     		'08.LARGE_SBI': 'https://api.mfapi.in/mf/119598',
     		'09.HYBRID_ICICI': 'https://api.mfapi.in/mf/120251'
-    	}
+    	},
+        'ria': {
+            '01.DEBT_SBI': 'https://api.mfapi.in/mf/119824',
+            '02.SMALL_AXIS': 'https://api.mfapi.in/mf/125354',
+            '03.SMALL_SBI': 'https://api.mfapi.in/mf/125497',
+            '04.FLEXI_UTI': 'https://api.mfapi.in/mf/120662',
+            '05.FLEXI_PARAG': 'https://api.mfapi.in/mf/122639'
+        }
     };
     
-    $('#datepicker').datepicker({
+    $('#date_picker').datepicker({
         changeMonth: true,
         changeYear: true,
         'dateFormat': 'dd-mm-yy',
@@ -44,19 +44,36 @@ $(document).ready(function() {
 	$(document).ajaxSend(function() {
 		addOverlay();
 	});
+
+
+    $('#how_many_days').on('focusin', function() {
+        $('#how_many_days').prop('readonly',false);
+        $('#dayCountSubmit').prop('disabled',false);
+        $('#date_picker').val("");
+        $('#date_picker').prop('readonly',true);
+        $('#dateSubmit').prop('disabled',true);
+    });
+    $('#date_picker').on('focusin', function() {
+        $('#date_picker').prop('readonly',false);
+        $('#dateSubmit').prop('disabled',false);
+        $('#how_many_days').val("");
+        $('#how_many_days').prop('readonly',true);
+        $('#dayCountSubmit').prop('disabled',true);
+    });
+
     
     $('#how_many_days').on('focusout', function() {
         clipInput($(this));
     });
     
-    $('#trackerSubmit').click(function() {
-    	if (validateMultiDayTracker()) {
+    $('#dayCountSubmit').click(function() {
+    	if (isValidMultiDayTracker()) {
     		generateMultiDayTracker();
     	}
     });
     
     $('#dateSubmit').click(function() {
-    	if (validateOneDayTracker()) {
+    	if (isValidOneDayTracker()) {
     		generateOneDayTracker();
     	}
     });
@@ -69,7 +86,7 @@ $(document).ready(function() {
     	let myInvestor = $("input[name='investorName']:checked").val();
     	try {
 	    	$('#records_table').empty();
-	    	$('#datepicker').val('');
+	    	$('#date_picker').val('');
 	    	let dayCount = $('#how_many_days').val();
 	    	
 	    	let promises = [];
@@ -118,7 +135,7 @@ $(document).ready(function() {
     	try {
 	    	$('#records_table').empty();
 	        $('#how_many_days').val('');
-	        let mydate = $('#datepicker').val();
+	        let mydate = $('#date_picker').val();
 	        
 	        let promises = [];
 	    	let responseArr = [];
@@ -167,7 +184,7 @@ $(document).ready(function() {
     
     
     // Helper function
-    function validateMultiDayTracker() {
+    function isValidMultiDayTracker() {
     	if ($('#how_many_days').val() == '') {
     		flashWarn_invalidInput();
     		return false;
@@ -175,8 +192,8 @@ $(document).ready(function() {
     	return true;
     }
     
-    function validateOneDayTracker() {
-    	if ($('#datepicker').val() == '') {
+    function isValidOneDayTracker() {
+    	if ($('#date_picker').val() == '') {
     		flashWarn_invalidInput();
     		return false;
     	}
